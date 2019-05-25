@@ -1,0 +1,47 @@
+{
+  "name": "node-linux-pam",
+  "version": "0.0.1",
+  "gypfile": true,
+  "description": "Asynchronous PAM authentication for NodeJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "cc"
+  },
+  "engines": {
+    "node": ">=8.6.0"
+  },
+  "cc": {
+    "linelength": "120",
+    "files": [
+      "src/*.cc",
+      "src/*.h"
+    ],
+    "filter": [
+      "build/include",
+      "build/namespaces",
+      "legal/copyright"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aironavt/node-linux-pam.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aironavt/node-linux-pam/issues"
+  },
+  "homepage": "https://github.com/aironavt/node-linux-pam#readme",
+  "keywords": [
+    "pam",
+    "linux-pam",
+    "authentication"
+  ],
+  "author": "Evgeniy Vladykin <aironavt@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bindings": "1.5.0",
+    "node-addon-api": "1.6.3"
+  },
+  "devDependencies": {
+    "cc": "1.0.2"
+  }
+}
