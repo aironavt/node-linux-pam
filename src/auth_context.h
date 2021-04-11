@@ -1,5 +1,5 @@
-#ifndef _SRV_NODEPAM_SRC_AUTH_CONTEXT_H_
-#define _SRV_NODEPAM_SRC_AUTH_CONTEXT_H_
+#ifndef SRC_AUTH_CONTEXT_H_
+#define SRC_AUTH_CONTEXT_H_
 
 #include <string>
 
@@ -10,4 +10,4 @@ struct auth_context {
     std::string remoteHost;
 };
 
-#endif  // _SRV_NODEPAM_SRC_AUTH_CONTEXT_H_
+#endif  // SRC_AUTH_CONTEXT_H_
