@@ -5,7 +5,7 @@
   "description": "Asynchronous PAM authentication for NodeJS",
   "main": "index.js",
   "scripts": {
-    "test": "cc"
+    "test": "cpplint"
   },
   "engines": {
     "node": ">=8.6.0"
@@ -39,9 +39,9 @@
   "license": "MIT",
   "dependencies": {
     "bindings": "1.5.0",
-    "node-addon-api": "1.6.3"
+    "node-addon-api": "3.1.0"
   },
   "devDependencies": {
-    "cc": "1.0.2"
+    "cc": "3.0.1"
   }
 }
