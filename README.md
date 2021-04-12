@@ -17,12 +17,12 @@ pamAuthenticate(options, function(err, code) {
         return;
     }
 
-    if (err && code === pamErrors.PAM_NEW_AUTHTOK_REQD) {
+    if (code === pamErrors.PAM_NEW_AUTHTOK_REQD) {
         console.log('Authentication token is expired');
         return;
     }
 
-    console.log(err);
+    console.log(err, code);
 });
 ```
 

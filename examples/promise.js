@@ -17,7 +17,7 @@ pamAuthenticatePromises(options)
     if (err instanceof PamError) {
       const { message, code } = err;
 
-      if (message && code === pamErrors.PAM_NEW_AUTHTOK_REQD) {
+      if (code === pamErrors.PAM_NEW_AUTHTOK_REQD) {
         console.log('Authentication token is expired');
         return;
       }
