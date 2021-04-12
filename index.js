@@ -1,4 +1,5 @@
 const pam = require('bindings')('node-linux-pam');
+const PamError = require('./pam-error');
 
 /**
  * Enum for The Linux - PAM return values
@@ -28,12 +29,12 @@ const pamErrors = Object.freeze({
   PAM_AUTHINFO_UNAVAIL: 9,
   /** User not known to the underlying authenticaiton module */
   PAM_USER_UNKNOWN: 10,
-  /** 
+  /**
    * An authentication service has maintained a retry count which has been reached.
    * No further retries should be attempted
    */
   PAM_MAXTRIES: 11,
-  /** 
+  /**
    * New authentication token required. This is normally returned if the machine security policies require that
    * the password should be changed beccause the password is NULL or it has aged
    */
@@ -75,14 +76,36 @@ const pamErrors = Object.freeze({
   /** conversation function is event driven and data is not available yet */
   PAM_CONV_AGAIN: 30,
   /**
-   * please call this function again to complete authentication stack. Before calling again, verify that 
+   * please call this function again to complete authentication stack. Before calling again, verify that
    * conversation is completed
    */
   PAM_INCOMPLETE: 31,
 });
 
+/**
+ * @param {Object} options
+ * @param {string} options.username The name of the target user.
+ * @param {string} options.password User password.
+ * @param {string} [options.serviceName="login"] The name of the service to apply.
+ * @param {string} [options.remoteHost=""] Sets the PAM_RHOST option via the pam_set_item(3) call.
+ * @returns {Promise<number|PamError>}
+ */
+function pamAuthenticatePromises(options) {
+  return new Promise((resolve, reject) => {
+    pam(options, function (err, code) {
+      if (!err) {
+        return resolve(code);
+      }
+
+      reject(new PamError(err, code));
+    });
+  });
+}
+
 module.exports = {
   default: pam,
   pamAuthenticate: pam,
+  pamAuthenticatePromises,
   pamErrors,
+  PamError,
 };
