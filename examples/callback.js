@@ -1,7 +1,7 @@
 const {
   pamAuthenticate,
   pamErrors,
-} = require('./index');
+} = require('../index');
 
 const options = {
   username: 'username',
