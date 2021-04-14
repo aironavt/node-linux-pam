@@ -5,7 +5,8 @@
   "description": "Asynchronous PAM authentication for NodeJS",
   "main": "index.js",
   "scripts": {
-    "test": "cpplint"
+    "test": "jest",
+    "lint": "cpplint"
   },
   "engines": {
     "node": ">=8.6.0"
@@ -42,6 +43,7 @@
     "node-addon-api": "3.1.0"
   },
   "devDependencies": {
-    "cc": "3.0.1"
+    "cc": "3.0.1",
+    "jest": "25.5.4"
   }
 }
