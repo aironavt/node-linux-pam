@@ -1,9 +1,5 @@
 const { execSync } = require('child_process');
-const {
-  pamAuthenticatePromises,
-  pamErrors,
-  PamError,
-} = require('../index');
+const { pamAuthenticatePromises, pamErrors, PamError } = require('../index');
 
 const USERNAME_OF_NON_EXISTENT_USER = 'promise-test-pam-non-existent-user';
 const PASSWORD_OF_NON_EXISTENT_USER = 'promise-password';
@@ -33,7 +29,7 @@ describe('pamAuthenticatePromises', () => {
       execSync(`echo ${USERNAME_OF_AN_EXISTING_USER}:${PASSWORD_OF_AN_EXISTING_USER} | chpasswd`);
     });
 
-    afterAll(function() {
+    afterAll(() => {
       // Delete user
       execSync(`userdel --force ${USERNAME_OF_AN_EXISTING_USER}`);
     });
@@ -68,7 +64,7 @@ describe('pamAuthenticatePromises', () => {
       execSync(`passwd --expire ${USERNAME_OF_AN_EXISTING_USER}`);
     });
 
-    afterAll(function() {
+    afterAll(() => {
       // Delete user
       execSync(`userdel --force ${USERNAME_OF_AN_EXISTING_USER}`);
     });

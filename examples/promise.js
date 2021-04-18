@@ -1,8 +1,4 @@
-const {
-  pamAuthenticatePromises,
-  pamErrors,
-  PamError,
-} = require('../index');
+const { pamAuthenticatePromises, pamErrors, PamError } = require('../index');
 
 const options = {
   username: 'username',
@@ -11,7 +7,7 @@ const options = {
 
 pamAuthenticatePromises(options)
   .then(() => {
-    console.log("Authenticated!");
+    console.log('Authenticated!');
   })
   .catch((err) => {
     if (err instanceof PamError) {
