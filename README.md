@@ -1,5 +1,7 @@
 # node-linux-pam
 
+[![Actions Status](https://github.com/aironavt/node-linux-pam/actions/workflows/build.yml/badge.svg)](https://github.com/aironavt/node-linux-pam/actions)
+
 Asynchronous PAM authentication for NodeJS. Implements two PAM methods [pam_authenticate(3)](http://www.linux-pam.org/Linux-PAM-html/adg-interface-by-app-expected.html#adg-pam_authenticate) и [pam_acct_mgmt(3)](http://www.linux-pam.org/Linux-PAM-html/adg-interface-by-app-expected.html#adg-pam_acct_mgmt).
 
 ## Usage

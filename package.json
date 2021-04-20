@@ -6,6 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
+    "install": "node-pre-gyp install --fallback-to-build",
     "lint": "npm run lint:cpplint && npm run lint:prettier",
     "lint:cpplint": "cpplint",
     "lint:prettier": "prettier --check './**/*.{js,json,md}'"
@@ -18,6 +19,12 @@
     "binding.gyp",
     "pam-error.js"
   ],
+  "binary": {
+    "module_name": "node-linux-pam",
+    "module_path": "./build/Release/",
+    "remote_path": "./aironavt/{module_name}/releases/download/{version}",
+    "host": "https://github.com"
+  },
   "cc": {
     "linelength": "120",
     "files": [
@@ -46,6 +53,7 @@
   "author": "Evgeniy Vladykin <aironavt@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@mapbox/node-pre-gyp": "1.0.3",
     "bindings": "1.5.0",
     "node-addon-api": "3.1.0"
   },
