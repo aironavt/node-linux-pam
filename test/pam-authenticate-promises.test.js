@@ -1,5 +1,5 @@
 const { execSync } = require('child_process');
-const { pamAuthenticatePromises, pamErrors, PamError } = require('../index');
+const { pamAuthenticatePromise, pamErrors, PamError } = require('../index');
 
 const USERNAME_OF_NON_EXISTENT_USER = 'promise-test-pam-non-existent-user';
 const PASSWORD_OF_NON_EXISTENT_USER = 'promise-password';
@@ -7,7 +7,7 @@ const USERNAME_OF_AN_EXISTING_USER = 'promise-test-pam-user';
 const PASSWORD_OF_AN_EXISTING_USER = 'promise-password';
 const BAD_PASSWORD_OF_AN_EXISTING_USER = 'promise-bad-password';
 
-describe('pamAuthenticatePromises', () => {
+describe('pamAuthenticatePromise', () => {
   describe('when there is no user', () => {
     test(`should return an PamError with code ${pamErrors.PAM_AUTH_ERR}`, async () => {
       const options = {
@@ -15,7 +15,7 @@ describe('pamAuthenticatePromises', () => {
         password: PASSWORD_OF_NON_EXISTENT_USER,
       };
 
-      const promise = pamAuthenticatePromises(options);
+      const promise = pamAuthenticatePromise(options);
 
       await expect(promise).rejects.toThrow(PamError);
       await expect(promise).rejects.toThrow(expect.objectContaining({ code: pamErrors.PAM_AUTH_ERR }));
@@ -40,7 +40,7 @@ describe('pamAuthenticatePromises', () => {
         password: PASSWORD_OF_AN_EXISTING_USER,
       };
 
-      await expect(pamAuthenticatePromises(options)).resolves.toBe(pamErrors.PAM_SUCCESS);
+      await expect(pamAuthenticatePromise(options)).resolves.toBe(pamErrors.PAM_SUCCESS);
     });
 
     test(`should return PamError with code ${pamErrors.PAM_AUTH_ERR} on wrong password`, async () => {
@@ -49,7 +49,7 @@ describe('pamAuthenticatePromises', () => {
         password: BAD_PASSWORD_OF_AN_EXISTING_USER,
       };
 
-      const promise = pamAuthenticatePromises(options);
+      const promise = pamAuthenticatePromise(options);
 
       await expect(promise).rejects.toThrow(PamError);
       await expect(promise).rejects.toThrow(expect.objectContaining({ code: pamErrors.PAM_AUTH_ERR }));
@@ -75,7 +75,7 @@ describe('pamAuthenticatePromises', () => {
         password: PASSWORD_OF_AN_EXISTING_USER,
       };
 
-      const promise = pamAuthenticatePromises(options);
+      const promise = pamAuthenticatePromise(options);
 
       await expect(promise).rejects.toThrow(PamError);
       await expect(promise).rejects.toThrow(expect.objectContaining({ code: pamErrors.PAM_NEW_AUTHTOK_REQD }));

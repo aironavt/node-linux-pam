@@ -90,7 +90,7 @@ const pamErrors = Object.freeze({
  * @param {string} [options.remoteHost=""] Sets the PAM_RHOST option via the pam_set_item(3) call.
  * @returns {Promise<number|PamError>}
  */
-function pamAuthenticatePromises(options) {
+function pamAuthenticatePromise(options) {
   return new Promise((resolve, reject) => {
     pam(options, (err, code) => {
       if (!err) {
@@ -105,7 +105,7 @@ function pamAuthenticatePromises(options) {
 module.exports = {
   default: pam,
   pamAuthenticate: pam,
-  pamAuthenticatePromises,
+  pamAuthenticatePromise,
   pamErrors,
   PamError,
 };

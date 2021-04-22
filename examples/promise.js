@@ -1,11 +1,11 @@
-const { pamAuthenticatePromises, pamErrors, PamError } = require('../index');
+const { pamAuthenticatePromise, pamErrors, PamError } = require('../index');
 
 const options = {
   username: 'username',
   password: 'password',
 };
 
-pamAuthenticatePromises(options)
+pamAuthenticatePromise(options)
   .then(() => {
     console.log('Authenticated!');
   })
