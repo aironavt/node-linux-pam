@@ -27,7 +27,7 @@ jobs:
         run: npm ci --build-from-source
 
       - name: Run lint
-        run: npm lint
+        run: npm run lint
 
       - name: Run tests
         run: sudo npm test
