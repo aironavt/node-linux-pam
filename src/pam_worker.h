@@ -1,5 +1,5 @@
-#ifndef _SRV_NODEPAM_SRC_PAM_WORKER_H_
-#define _SRV_NODEPAM_SRC_PAM_WORKER_H_
+#ifndef SRC_PAM_WORKER_H_
+#define SRC_PAM_WORKER_H_
 
 using namespace Napi;
 
@@ -33,4 +33,4 @@ class PamWorker : public AsyncWorker {
                                    void *appdata_ptr);
 };
 
-#endif  // _SRV_NODEPAM_SRC_PAM_WORKER_H_
+#endif  // SRC_PAM_WORKER_H_

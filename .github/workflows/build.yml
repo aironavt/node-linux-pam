@@ -1,0 +1,44 @@
+name: Build
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [8.x, 10.x, 11.x, 12.x, 13.x, 14.x, 15.x, 16.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2.1.5
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Setup Libpam
+        run: sudo apt-get install libpam0g-dev
+
+      - name: Install packages
+        run: npm ci --build-from-source
+
+      - name: Run lint
+        run: npm lint
+
+      - name: Run tests
+        run: sudo npm test
+
+      - name: Packing
+        run: |
+          rm -rf build/Release/.deps build/Release/obj.target
+          ./node_modules/.bin/node-pre-gyp package
+          find ./build/ -name '*.tar.gz' -exec mv {} ./build/ \;
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: ${{ matrix.node-version }}
+          path: build/*.tar.gz
