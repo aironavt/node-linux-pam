@@ -97,7 +97,7 @@ function pamAuthenticatePromise(options) {
         return resolve(code);
       }
 
-      reject(new PamError(err, code));
+      return reject(new PamError(err, code));
     });
   });
 }
