@@ -92,13 +92,7 @@ const pamErrors = Object.freeze({
  */
 function pamAuthenticatePromise(options) {
   return new Promise((resolve, reject) => {
-    pam(options, (err, code) => {
-      if (!err) {
-        return resolve(code);
-      }
-
-      return reject(new PamError(err, code));
-    });
+    pam(options, (err, code) => (!err ? resolve(code) : reject(new PamError(err, code))));
   });
 }
 

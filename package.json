@@ -9,7 +9,7 @@
     "install": "node-pre-gyp install --fallback-to-build",
     "lint": "npm run lint:cpplint && npm run lint:prettier",
     "lint:cpplint": "cpplint",
-    "lint:prettier": "prettier --check './**/*.{js,json,md}'"
+    "lint:prettier": "prettier --check './**/*.{js,json,md,ts}'"
   },
   "engines": {
     "node": ">=8.6.0"
@@ -17,7 +17,8 @@
   "files": [
     "src/",
     "binding.gyp",
-    "pam-error.js"
+    "pam-error.js",
+    "index.d.ts"
   ],
   "binary": {
     "module_name": "node-linux-pam",
