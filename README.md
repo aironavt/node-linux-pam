@@ -1,4 +1,4 @@
-# node-linux-pam
+![logo](images/node-linux-pam-logo.png)
 
 [![Actions Status](https://github.com/aironavt/node-linux-pam/actions/workflows/build.yml/badge.svg)](https://github.com/aironavt/node-linux-pam/actions)
 [![node-current](https://img.shields.io/node/v/node-linux-pam)](https://nodejs.org)
