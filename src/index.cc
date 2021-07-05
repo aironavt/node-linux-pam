@@ -21,23 +21,48 @@ void validate(const CallbackInfo &info) {
     throw TypeError::New(env, "Argument 2 should be a Function");
   }
 
-  if (!options.Has("username")) {
-    throw TypeError::New(env, "Username option is requered");
+  bool hasUsername = options.Has("username");
+  bool hasPassword = options.Has("password");
+
+  if (!hasUsername || options.Get("username").IsUndefined()) {
+    throw TypeError::New(env, "Username option is required");
   }
 
-  if (!options.Has("password")) {
-    throw TypeError::New(env, "Password option is requered");
+  if (hasUsername && !options.Get("username").IsString()) {
+    throw TypeError::New(env, "Username should be a String");
+  }
+
+  if (!hasPassword || options.Get("password").IsUndefined()) {
+    throw TypeError::New(env, "Password option is required");
+  }
+
+  if (hasPassword && !options.Get("password").IsString()) {
+    throw TypeError::New(env, "Password should be a String");
+  }
+
+  if (options.Has("serviceName")
+    && !options.Get("serviceName").IsUndefined()
+    && !options.Get("serviceName").IsString()
+  ) {
+    throw TypeError::New(env, "ServiceName should be a String");
+  }
+
+  if (options.Has("remoteHost")
+    && !options.Get("remoteHost").IsUndefined()
+    && !options.Get("remoteHost").IsString()
+  ) {
+    throw TypeError::New(env, "RemoteHost should be a String");
   }
 }
 
 void initAuthContext(const CallbackInfo &info, auth_context *authContext) {
   Object options = info[0].As<Object>();
 
-  if (options.Has("serviceName")) {
+  if (options.Has("serviceName") && !options.Get("serviceName").IsUndefined()) {
     authContext->serviceName = options.Get("serviceName").As<String>().Utf8Value();
   }
 
-  if (options.Has("remoteHost")) {
+  if (options.Has("remoteHost") && !options.Get("remoteHost").IsUndefined()) {
     authContext->remoteHost = options.Get("remoteHost").As<String>().Utf8Value();
   }
 
