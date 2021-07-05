@@ -60,6 +60,17 @@ pamAuthenticatePromise(options)
   });
 ```
 
+### CLI parameters
+
+| Option name     | Description                                                                                                         | Default         | Required |
+| --------------- | ------------------------------------------------------------------------------------------------------------------- | --------------- | -------- |
+| username        | The name of the target user                                                                                         |                 | Yes      |
+| password        | User password                                                                                                       |                 | Yes      |
+| service-name    | The name of the service to apply                                                                                    | login           | No       |
+| remote-host     | Sets the PAM_RHOST option via the pam_set_item(3) call                                                              |                 | No       |
+| stdout-template | The template of the message that is printed to stdout on error. Available values to substitute: name, code, message | {message}       | No       |
+| stderr-template | The template of the message that is printed to stderr on error. Available values to substitute: name, code, message | {name} [{code}] | No       |
+
 ## Requirements
 
 This module require atleast `NodeJS 8`
