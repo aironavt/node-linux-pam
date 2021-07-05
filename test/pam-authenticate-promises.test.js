@@ -1,5 +1,5 @@
-const { execSync } = require('child_process');
 const { pamAuthenticatePromise, pamErrors, PamError } = require('../index');
+const { userAdd, expiredUserAdd, userDel } = require('./helpers');
 
 const USERNAME_OF_NON_EXISTENT_USER = 'promise-test-pam-non-existent-user';
 const PASSWORD_OF_NON_EXISTENT_USER = 'promise-password';
@@ -118,13 +118,12 @@ describe('pamAuthenticatePromise', () => {
   describe('when there is a user', () => {
     beforeAll(() => {
       // Create user
-      execSync(`useradd ${USERNAME_OF_AN_EXISTING_USER}`);
-      execSync(`echo ${USERNAME_OF_AN_EXISTING_USER}:${PASSWORD_OF_AN_EXISTING_USER} | chpasswd`);
+      userAdd(USERNAME_OF_AN_EXISTING_USER, PASSWORD_OF_AN_EXISTING_USER);
     });
 
     afterAll(() => {
       // Delete user
-      execSync(`userdel --force ${USERNAME_OF_AN_EXISTING_USER}`);
+      userDel(USERNAME_OF_AN_EXISTING_USER);
     });
 
     test(`should return code ${pamErrors.PAM_SUCCESS} with the correct password`, async () => {
@@ -151,15 +150,13 @@ describe('pamAuthenticatePromise', () => {
 
   describe('when there is a user with an expired password', () => {
     beforeAll(() => {
-      // Create user
-      execSync(`useradd ${USERNAME_OF_AN_EXISTING_USER}`);
-      execSync(`echo ${USERNAME_OF_AN_EXISTING_USER}:${PASSWORD_OF_AN_EXISTING_USER} | chpasswd`);
-      execSync(`passwd --expire ${USERNAME_OF_AN_EXISTING_USER}`);
+      // Create expired user
+      expiredUserAdd(USERNAME_OF_AN_EXISTING_USER, PASSWORD_OF_AN_EXISTING_USER);
     });
 
     afterAll(() => {
       // Delete user
-      execSync(`userdel --force ${USERNAME_OF_AN_EXISTING_USER}`);
+      userDel(USERNAME_OF_AN_EXISTING_USER);
     });
 
     test(`should return an PamError with code ${pamErrors.PAM_NEW_AUTHTOK_REQD}`, async () => {
