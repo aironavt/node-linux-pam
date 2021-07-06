@@ -63,7 +63,7 @@ pamAuthenticatePromise(options)
 ### CLI parameters
 
 ```shell
-sudo nlp --username user --password pass --stderr-template "{ status: {name} }"
+$ sudo nlp --username user --password pass --stderr-template "{ status: {name} }"
 Error: Authentication failure
 { status: PAM_AUTH_ERR }
 ```
