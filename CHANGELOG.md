@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.1] - 2021-07-06
+
+### Fixed
+
+- Added cli.js file to release package
+
 ## [0.2.0] - 2021-07-06
 
 ### Added
