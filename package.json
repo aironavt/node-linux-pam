@@ -9,7 +9,7 @@
     "install": "node-pre-gyp install --fallback-to-build",
     "lint": "npm run lint:cpplint && npm run lint:prettier",
     "lint:cpplint": "cpplint",
-    "lint:prettier": "prettier --check './**/*.{js,json,md}'"
+    "lint:prettier": "prettier --check './**/*.{js,json,md,ts}'"
   },
   "engines": {
     "node": ">=8.6.0"
@@ -17,8 +17,12 @@
   "files": [
     "src/",
     "binding.gyp",
-    "pam-error.js"
+    "pam-error.js",
+    "index.d.ts"
   ],
+  "bin": {
+    "nlp": "./cli.js"
+  },
   "binary": {
     "module_name": "node-linux-pam",
     "module_path": "./build/Release/",
@@ -53,9 +57,11 @@
   "author": "Evgeniy Vladykin <aironavt@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@mapbox/node-pre-gyp": "1.0.3",
+    "@mapbox/node-pre-gyp": "1.0.5",
     "bindings": "1.5.0",
-    "node-addon-api": "3.1.0"
+    "node-addon-api": "3.1.0",
+    "string-template": "1.0.0",
+    "yargs": "15.4.1"
   },
   "devDependencies": {
     "cc": "3.0.1",

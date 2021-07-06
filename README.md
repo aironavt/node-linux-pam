@@ -1,4 +1,4 @@
-# node-linux-pam
+![logo](images/node-linux-pam-logo.png)
 
 [![Actions Status](https://github.com/aironavt/node-linux-pam/actions/workflows/build.yml/badge.svg)](https://github.com/aironavt/node-linux-pam/actions)
 [![node-current](https://img.shields.io/node/v/node-linux-pam)](https://nodejs.org)
@@ -59,6 +59,23 @@ pamAuthenticatePromise(options)
     }
   });
 ```
+
+### CLI parameters
+
+```shell
+$ sudo nlp --username user --password pass --stderr-template "{ status: {name} }"
+Error: Authentication failure
+{ status: PAM_AUTH_ERR }
+```
+
+| Option name     | Description                                                                                                         | Default         | Required |
+| --------------- | ------------------------------------------------------------------------------------------------------------------- | --------------- | -------- |
+| username        | The name of the target user                                                                                         |                 | Yes      |
+| password        | User password                                                                                                       |                 | Yes      |
+| service-name    | The name of the service to apply                                                                                    | login           | No       |
+| remote-host     | Sets the PAM_RHOST option via the pam_set_item(3) call                                                              |                 | No       |
+| stdout-template | The template of the message that is printed to stdout on error. Available values to substitute: name, code, message | {message}       | No       |
+| stderr-template | The template of the message that is printed to stderr on error. Available values to substitute: name, code, message | {name} [{code}] | No       |
 
 ## Requirements
 
