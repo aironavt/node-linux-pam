@@ -16,6 +16,7 @@
   },
   "files": [
     "src/",
+    "cli.js",
     "binding.gyp",
     "pam-error.js",
     "index.d.ts"
