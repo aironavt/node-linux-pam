@@ -1,6 +1,6 @@
 {
   "name": "node-linux-pam",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "gypfile": true,
   "description": "Asynchronous PAM authentication for NodeJS",
   "main": "index.js",
